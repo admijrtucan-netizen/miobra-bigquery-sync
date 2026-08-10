@@ -1,0 +1,28 @@
+{
+  "name": "miobra-bigquery-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One-shot batch: pulls Miobra purchase orders, writes JSONL to GCS, loads into BigQuery.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "dry-run": "tsx src/index.ts --dry-run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.9.1",
+    "@google-cloud/storage": "^7.15.0",
+    "change-case": "^5.4.4",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.12",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

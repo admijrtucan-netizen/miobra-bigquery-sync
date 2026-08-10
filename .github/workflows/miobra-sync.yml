@@ -1,0 +1,41 @@
+name: Miobra → BigQuery Sync
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create GCP credentials file
+        env:
+          GCP_KEY_BASE64: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$GCP_KEY_BASE64" | base64 -d > /tmp/gcp-key.json
+
+      - name: Run Miobra → BigQuery batch
+        env:
+          MIOBRA_USERNAME: ${{ secrets.MIOBRA_USERNAME }}
+          MIOBRA_PASSWORD: ${{ secrets.MIOBRA_PASSWORD }}
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
+          BQ_DATASET: ${{ secrets.BQ_DATASET }}
+          BQ_TABLE: ${{ secrets.BQ_TABLE }}
+          GOOGLE_APPLICATION_CREDENTIALS: /tmp/gcp-key.json
+          LOG_LEVEL: info
+        run: |
+          npm run build
+          npm start
