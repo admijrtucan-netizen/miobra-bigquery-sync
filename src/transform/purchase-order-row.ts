@@ -14,8 +14,8 @@ export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow
     subtotal: order.subtotal ?? null,
     salesTax: order.sales_tax ?? null,
     total: order.total ?? null,
-    provider: JSON.stringify(order.provider ?? {}),
-    project: JSON.stringify(order.project ?? {}),
-    createdBy: JSON.stringify(order.created_by ?? {}),
+    provider: order.provider?.name ?? null,
+    project: order.project?.name ?? null,
+    createdBy: order.created_by?.name ?? null,
   };
 }
