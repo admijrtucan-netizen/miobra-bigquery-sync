@@ -18,6 +18,15 @@ const SCHEMA = {
     { name: 'provider', type: 'STRING' },
     { name: 'project', type: 'STRING' },
     { name: 'createdBy', type: 'STRING' },
+    { name: 'approvedBy', type: 'STRING' },
+    { name: 'lastAuditUserName', type: 'STRING' },
+    { name: 'purchaseOrderSubtotal', type: 'FLOAT64' },
+    { name: 'contractAdvanceAmount', type: 'FLOAT64' },
+    { name: 'contractWarrantyAmount', type: 'FLOAT64' },
+    { name: 'freightAmount', type: 'FLOAT64' },
+    { name: 'budgetType', type: 'INTEGER' },
+    { name: 'originType', type: 'INTEGER' },
+    { name: 'type', type: 'INTEGER' },
   ],
 };
 

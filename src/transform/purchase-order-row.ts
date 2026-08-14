@@ -24,5 +24,14 @@ export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow
     provider: order.provider?.name ?? null,
     project: order.project?.name ?? null,
     createdBy: getFullName(order.created_by),
+    approvedBy: order.approved_by ?? null,
+    lastAuditUserName: order.last_audit_user_name ?? null,
+    purchaseOrderSubtotal: order.purchase_order_subtotal ?? null,
+    contractAdvanceAmount: order.contract_advance_amount ?? null,
+    contractWarrantyAmount: order.contract_warranty_amount ?? null,
+    freightAmount: order.freight_amount ?? null,
+    budgetType: order.budget_type ?? null,
+    originType: order.origin_type ?? null,
+    type: order.type ?? null,
   };
 }
