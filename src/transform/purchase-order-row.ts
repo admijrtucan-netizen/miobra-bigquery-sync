@@ -2,6 +2,13 @@ import type { MiobraPurchaseOrder } from '../miobra/types.js';
 
 export type PurchaseOrderRow = Record<string, unknown>;
 
+function getFullName(user: any): string | null {
+  const firstName = user?.first_name ?? '';
+  const lastName = user?.last_name ?? '';
+  const fullName = `${firstName} ${lastName}`.trim();
+  return fullName || null;
+}
+
 export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow {
   return {
     id: order.purchase_order_id ?? null,
@@ -16,6 +23,6 @@ export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow
     total: order.total ?? null,
     provider: order.provider?.name ?? null,
     project: order.project?.name ?? null,
-    createdBy: order.created_by?.name ?? null,
+    createdBy: getFullName(order.created_by),
   };
 }
