@@ -1,7 +1,7 @@
 import { logger } from '../logger.js';
 import type { MiobraLoginResponse, MiobraPurchaseOrdersResponse } from './types.js';
 
-const BASE_URL = 'https://api.miobra.mx/api';
+const BASE_URL = 'https://api.miobra.mx';
 
 export class MiobraClient {
   private token: string | null = null;
