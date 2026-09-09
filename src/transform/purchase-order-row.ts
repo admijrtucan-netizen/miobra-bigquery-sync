@@ -11,6 +11,7 @@ function getFullName(user: any): string | null {
 
 export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow {
   return {
+    categoria: 'MATERIALES',
     id: order.purchase_order_id ?? null,
     number: order.number ?? null,
     orderDate: order.order_date ?? null,
@@ -33,5 +34,22 @@ export function toPurchaseOrderRow(order: MiobraPurchaseOrder): PurchaseOrderRow
     budgetType: order.budget_type ?? null,
     originType: order.origin_type ?? null,
     type: order.type ?? null,
+    workforceOrderId: null,
+    workforceOrderNumber: null,
+    startedDtTm: null,
+    endedDtTm: null,
+    workforceStatus: null,
+    workforcePaymentStatus: null,
+    workforceBudgetType: null,
+    lendingAmount: null,
+    retentionAmount: null,
+    totalAmountToPay: null,
+    providerWorkforce: null,
+    costRequestId: null,
+    costRequestNumber: null,
+    estimatedAmount: null,
+    approvedAmount: null,
+    requisitionStatus: null,
+    requisitionPaymentStatus: null,
   };
 }

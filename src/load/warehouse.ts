@@ -5,6 +5,7 @@ import type { Config } from '../config.js';
 
 const SCHEMA = {
   fields: [
+    { name: 'categoria', type: 'STRING' },
     { name: 'id', type: 'INTEGER' },
     { name: 'number', type: 'STRING' },
     { name: 'orderDate', type: 'TIMESTAMP' },
@@ -27,6 +28,23 @@ const SCHEMA = {
     { name: 'budgetType', type: 'INTEGER' },
     { name: 'originType', type: 'INTEGER' },
     { name: 'type', type: 'INTEGER' },
+    { name: 'workforceOrderId', type: 'INTEGER' },
+    { name: 'workforceOrderNumber', type: 'STRING' },
+    { name: 'startedDtTm', type: 'TIMESTAMP' },
+    { name: 'endedDtTm', type: 'TIMESTAMP' },
+    { name: 'workforceStatus', type: 'INTEGER' },
+    { name: 'workforcePaymentStatus', type: 'INTEGER' },
+    { name: 'workforceBudgetType', type: 'INTEGER' },
+    { name: 'lendingAmount', type: 'FLOAT64' },
+    { name: 'retentionAmount', type: 'FLOAT64' },
+    { name: 'totalAmountToPay', type: 'FLOAT64' },
+    { name: 'providerWorkforce', type: 'STRING' },
+    { name: 'costRequestId', type: 'INTEGER' },
+    { name: 'costRequestNumber', type: 'STRING' },
+    { name: 'estimatedAmount', type: 'FLOAT64' },
+    { name: 'approvedAmount', type: 'FLOAT64' },
+    { name: 'requisitionStatus', type: 'INTEGER' },
+    { name: 'requisitionPaymentStatus', type: 'INTEGER' },
   ],
 };
 
