@@ -10,12 +10,42 @@ export class MiobraRepository {
   }
 
   async listCostRequests(): Promise<MiobraCostRequest[]> {
-    const response = await this.client.getCostRequests();
-    return response.data || [];
+    // Get all purchase orders to extract unique project IDs
+    const orders = await this.listPurchaseOrders();
+    const projectIds = new Set<number>();
+
+    for (const order of orders) {
+      if (order.project?.project_id) {
+        projectIds.add(order.project.project_id);
+      }
+    }
+
+    const costRequests: MiobraCostRequest[] = [];
+    for (const projectId of projectIds) {
+      const response = await this.client.getCostRequests(projectId);
+      costRequests.push(...(response.data || []));
+    }
+
+    return costRequests;
   }
 
   async listWorkforceEstimations(): Promise<MiobraWorkforceEstimation[]> {
-    const response = await this.client.getWorkforceEstimations();
-    return response.data || [];
+    // Get all purchase orders to extract unique project IDs
+    const orders = await this.listPurchaseOrders();
+    const projectIds = new Set<number>();
+
+    for (const order of orders) {
+      if (order.project?.project_id) {
+        projectIds.add(order.project.project_id);
+      }
+    }
+
+    const estimations: MiobraWorkforceEstimation[] = [];
+    for (const projectId of projectIds) {
+      const response = await this.client.getWorkforceEstimations(projectId);
+      estimations.push(...(response.data || []));
+    }
+
+    return estimations;
   }
 }

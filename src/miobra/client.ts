@@ -47,13 +47,13 @@ export class MiobraClient {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/purchases/`;
+    const url = `${BASE_URL}/api/purchases/`;
     const userAgent = 'miobra-bigquery-sync/1.0';
 
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${this.token}`,
+        'Authorization': `Token ${this.token}`,
         'User-Agent': userAgent,
       },
     });
@@ -66,18 +66,18 @@ export class MiobraClient {
     return (await response.json()) as MiobraPurchaseOrdersResponse;
   }
 
-  async getCostRequests(): Promise<MiobraCostRequestsResponse> {
+  async getCostRequests(projectId: number): Promise<MiobraCostRequestsResponse> {
     if (!this.token) {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/cost_requests/`;
+    const url = `${BASE_URL}/api/cost_requests/projects/${projectId}`;
     const userAgent = 'miobra-bigquery-sync/1.0';
 
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${this.token}`,
+        'Authorization': `Token ${this.token}`,
         'User-Agent': userAgent,
       },
     });
@@ -90,18 +90,18 @@ export class MiobraClient {
     return (await response.json()) as MiobraCostRequestsResponse;
   }
 
-  async getWorkforceEstimations(): Promise<MiobraWorkforceEstimationsResponse> {
+  async getWorkforceEstimations(projectId: number): Promise<MiobraWorkforceEstimationsResponse> {
     if (!this.token) {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/workforce_orders/`;
+    const url = `${BASE_URL}/api/workforce_orders/projects/${projectId}/estimations/`;
     const userAgent = 'miobra-bigquery-sync/1.0';
 
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${this.token}`,
+        'Authorization': `Token ${this.token}`,
         'User-Agent': userAgent,
       },
     });
