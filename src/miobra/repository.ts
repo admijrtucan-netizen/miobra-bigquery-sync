@@ -15,8 +15,9 @@ export class MiobraRepository {
     const projectIds = new Set<number>();
 
     for (const order of orders) {
-      if (order.project?.project_id) {
-        projectIds.add(order.project.project_id);
+      const projectId = (order.project as any)?.project_id;
+      if (typeof projectId === 'number') {
+        projectIds.add(projectId);
       }
     }
 
@@ -35,8 +36,9 @@ export class MiobraRepository {
     const projectIds = new Set<number>();
 
     for (const order of orders) {
-      if (order.project?.project_id) {
-        projectIds.add(order.project.project_id);
+      const projectId = (order.project as any)?.project_id;
+      if (typeof projectId === 'number') {
+        projectIds.add(projectId);
       }
     }
 
