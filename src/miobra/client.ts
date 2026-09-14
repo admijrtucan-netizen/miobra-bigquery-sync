@@ -17,7 +17,7 @@ export class MiobraClient {
   ) {}
 
   async login(): Promise<void> {
-    const url = `${BASE_URL}/users/login/`;
+    const url = `${BASE_URL}/api/users/login/`;
     const userAgent = 'miobra-bigquery-sync/1.0';
 
     const response = await fetch(url, {
