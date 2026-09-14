@@ -1,5 +1,10 @@
 import { logger } from '../logger.js';
-import type { MiobraLoginResponse, MiobraPurchaseOrdersResponse } from './types.js';
+import type {
+  MiobraLoginResponse,
+  MiobraPurchaseOrdersResponse,
+  MiobraCostRequestsResponse,
+  MiobraWorkforceEstimationsResponse,
+} from './types.js';
 
 const BASE_URL = 'https://api.miobra.mx';
 
@@ -59,5 +64,53 @@ export class MiobraClient {
     }
 
     return (await response.json()) as MiobraPurchaseOrdersResponse;
+  }
+
+  async getCostRequests(): Promise<MiobraCostRequestsResponse> {
+    if (!this.token) {
+      throw new Error('Not authenticated. Call login() first.');
+    }
+
+    const url = `${BASE_URL}/cost_requests/`;
+    const userAgent = 'miobra-bigquery-sync/1.0';
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
+        'User-Agent': userAgent,
+      },
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Miobra API failed: ${response.status} - ${body}`);
+    }
+
+    return (await response.json()) as MiobraCostRequestsResponse;
+  }
+
+  async getWorkforceEstimations(): Promise<MiobraWorkforceEstimationsResponse> {
+    if (!this.token) {
+      throw new Error('Not authenticated. Call login() first.');
+    }
+
+    const url = `${BASE_URL}/workforce_orders/`;
+    const userAgent = 'miobra-bigquery-sync/1.0';
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
+        'User-Agent': userAgent,
+      },
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      throw new Error(`Miobra API failed: ${response.status} - ${body}`);
+    }
+
+    return (await response.json()) as MiobraWorkforceEstimationsResponse;
   }
 }

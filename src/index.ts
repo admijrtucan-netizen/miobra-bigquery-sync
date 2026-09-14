@@ -8,6 +8,8 @@ import { MiobraRepository } from './miobra/repository.js';
 import { JsonlWriter } from './load/jsonl-writer.js';
 import { Warehouse } from './load/warehouse.js';
 import { toPurchaseOrderRow } from './transform/purchase-order-row.js';
+import { toCostRequestRow } from './transform/cost-request-row.js';
+import { toWorkforceRow } from './transform/workforce-row.js';
 
 async function main(): Promise<void> {
   const dryRun = process.argv.includes('--dry-run');
@@ -21,12 +23,29 @@ async function main(): Promise<void> {
 
   try {
     await client.login();
-    const orders = await repository.listPurchaseOrders();
 
-    logger.info('fetched purchase orders', { count: orders.length });
+    const [orders, costRequests, workforceEstimations] = await Promise.all([
+      repository.listPurchaseOrders(),
+      repository.listCostRequests(),
+      repository.listWorkforceEstimations(),
+    ]);
+
+    logger.info('fetched all data', {
+      purchaseOrders: orders.length,
+      costRequests: costRequests.length,
+      workforceEstimations: workforceEstimations.length,
+    });
 
     for (const order of orders) {
       await writer.write(toPurchaseOrderRow(order));
+    }
+
+    for (const request of costRequests) {
+      await writer.write(toCostRequestRow(request));
+    }
+
+    for (const estimation of workforceEstimations) {
+      await writer.write(toWorkforceRow(estimation));
     }
 
     await writer.close();
