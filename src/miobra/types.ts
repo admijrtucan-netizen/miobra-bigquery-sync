@@ -32,3 +32,43 @@ export interface MiobraPurchaseOrdersResponse {
   data: MiobraPurchaseOrder[];
   cost_requests?: Record<string, unknown>[];
 }
+
+export interface MiobraCostRequest {
+  cost_request_id: number;
+  number: string;
+  created_dt_tm: string;
+  estimated_amount: number;
+  approved_amount?: number;
+  status: number;
+  payment_status: number;
+  provider?: Record<string, unknown>;
+  project?: Record<string, unknown>;
+  created_by?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
+export interface MiobraCostRequestsResponse {
+  data: MiobraCostRequest[];
+}
+
+export interface MiobraWorkforceEstimation {
+  workforce_order_id: number;
+  number: string;
+  started_dt_tm?: string;
+  ended_dt_tm?: string;
+  status: number;
+  payment_status: number;
+  budget_type: number;
+  lending_amount: string;
+  retention_amount: string;
+  total_amount_to_pay: string;
+  provider_workforce?: Record<string, unknown>;
+  project?: Record<string, unknown>;
+  created_by?: Record<string, unknown>;
+  last_audit_user_name?: string;
+  [key: string]: unknown;
+}
+
+export interface MiobraWorkforceEstimationsResponse {
+  data: MiobraWorkforceEstimation[];
+}
