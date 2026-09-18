@@ -45,6 +45,14 @@ const SCHEMA = {
     { name: 'approvedAmount', type: 'FLOAT64' },
     { name: 'requisitionStatus', type: 'INTEGER' },
     { name: 'requisitionPaymentStatus', type: 'INTEGER' },
+    { name: 'notes', type: 'STRING' },
+    { name: 'alias', type: 'STRING' },
+    { name: 'created_dt_tm', type: 'TIMESTAMP' },
+    { name: 'total_estimated_amount', type: 'FLOAT64' },
+    { name: 'real_total_amount_to_pay', type: 'FLOAT64' },
+    { name: 'lending_refund_amount', type: 'FLOAT64' },
+    { name: 'total_amount_difference', type: 'FLOAT64' },
+    { name: 'retention_applies_to_all_amounts', type: 'BOOLEAN' },
   ],
 };
 
