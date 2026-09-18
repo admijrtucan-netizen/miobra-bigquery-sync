@@ -49,7 +49,7 @@ export class MiobraClient {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/api/purchases/`;
+    const url = `${BASE_URL}/purchases/`;
     logger.info('fetching purchase orders', { url });
 
     const response = await fetch(url, {
@@ -76,7 +76,7 @@ export class MiobraClient {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/api/cost_requests/projects/${projectId}`;
+    const url = `${BASE_URL}/cost_requests/projects/${projectId}`;
     logger.info('fetching cost requests', { url, projectId });
 
     const response = await fetch(url, {
@@ -103,7 +103,7 @@ export class MiobraClient {
       throw new Error('Not authenticated. Call login() first.');
     }
 
-    const url = `${BASE_URL}/api/workforce_orders/projects/${projectId}/estimations/`;
+    const url = `${BASE_URL}/workforce_orders/projects/${projectId}/estimations/`;
     logger.info('fetching workforce estimations', { url, projectId });
 
     const response = await fetch(url, {
