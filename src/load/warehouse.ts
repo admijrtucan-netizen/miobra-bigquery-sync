@@ -48,11 +48,15 @@ const SCHEMA = {
     { name: 'notes', type: 'STRING' },
     { name: 'alias', type: 'STRING' },
     { name: 'created_dt_tm', type: 'TIMESTAMP' },
+    { name: 'updated_dt_tm', type: 'TIMESTAMP' },
     { name: 'total_estimated_amount', type: 'FLOAT64' },
     { name: 'real_total_amount_to_pay', type: 'FLOAT64' },
     { name: 'lending_refund_amount', type: 'FLOAT64' },
     { name: 'total_amount_difference', type: 'FLOAT64' },
     { name: 'retention_applies_to_all_amounts', type: 'BOOLEAN' },
+    { name: 'workforce_agreement_json', type: 'STRING' },
+    { name: 'pdf_file_name', type: 'STRING' },
+    { name: 'pdf_file_url', type: 'STRING' },
   ],
 };
 

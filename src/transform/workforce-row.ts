@@ -54,10 +54,14 @@ export function toWorkforceRow(estimation: MiobraWorkforceEstimation): Workforce
     notes: (estimation as any).notes ?? null,
     alias: (estimation as any).alias ?? null,
     created_dt_tm: (estimation as any).created_dt_tm ?? null,
+    updated_dt_tm: (estimation as any).updated_dt_tm ?? null,
     total_estimated_amount: (estimation as any).total_estimated_amount ? parseFloat((estimation as any).total_estimated_amount) : null,
     real_total_amount_to_pay: (estimation as any).real_total_amount_to_pay ? parseFloat((estimation as any).real_total_amount_to_pay) : null,
     lending_refund_amount: (estimation as any).lending_refund_amount ? parseFloat((estimation as any).lending_refund_amount) : null,
     total_amount_difference: (estimation as any).total_amount_difference ? parseFloat((estimation as any).total_amount_difference) : null,
     retention_applies_to_all_amounts: (estimation as any).retention_applies_to_all_amounts ?? null,
+    workforce_agreement_json: (estimation as any).workforce_agreement ? JSON.stringify((estimation as any).workforce_agreement) : null,
+    pdf_file_name: (estimation as any).pdf_file?.file_name ?? null,
+    pdf_file_url: (estimation as any).pdf_file?.s3_presigned_url ?? null,
   };
 }
